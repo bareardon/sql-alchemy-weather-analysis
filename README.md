@@ -1,83 +1,64 @@
-# SQLAlchemy Homework - Surfs Up!
-
-### Before You Begin
-
-1. Create a new repository for this project called `sqlalchemy-challenge`. **Do not add this homework to an existing repository**.
-
-2. Clone the new repository to your computer.
-
-3. Add your Jupyter notebook and `app.py` to this folder. These will be the main scripts to run for analysis.
-
-4. Push the above changes to GitHub or GitLab.
+# SQLAlchemy - Surfs Up!
 
 
-Congratulations! You've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii! To help with your trip planning, you need to do some climate analysis on the area. The following outlines what you need to do.
+In this project, I perform a climate analysis before planning a trip to Hawaii. 
 
-## Step 1 - Climate Analysis and Exploration
+## Climate Analysis and Exploration
 
-To begin, use Python and SQLAlchemy to do basic climate analysis and data exploration of your climate database. All of the following analysis should be completed using SQLAlchemy ORM queries, Pandas, and Matplotlib.
+I use Python and SQLAlchemy to do basic climate analysis and data exploration of your climate database. The following analysis wasbcompleted using SQLAlchemy ORM queries, Pandas, and Matplotlib.
 
-* Use the provided [starter notebook](climate_starter.ipynb) and [hawaii.sqlite](Resources/hawaii.sqlite) files to complete your climate analysis and data exploration.
 
-* Use SQLAlchemy `create_engine` to connect to your sqlite database.
+* Used SQLAlchemy `create_engine` to connect to sqlite database.
 
-* Use SQLAlchemy `automap_base()` to reflect your tables into classes and save a reference to those classes called `Station` and `Measurement`.
+* Used SQLAlchemy `automap_base()` to reflect tables into classes and saved a reference to those classes called `Station` and `Measurement`.
 
-* Link Python to the database by creating an SQLAlchemy session.
-
-* **Important** Don't forget to close out your session at the end of your notebook.
+* Linked Python to the database by creating an SQLAlchemy session.
 
 ### Precipitation Analysis
 
-* Start by finding the most recent date in the data set.
+* Found the most recent date in the data set.
 
-* Using this date, retrieve the last 12 months of precipitation data by querying the 12 preceding months of data. **Note** you do not pass in the date as a variable to your query.
+* Using the most recent date, retrieved the last 12 months of precipitation data by querying the 12 preceding months of data. 
 
-* Select only the `date` and `prcp` values.
+* Selected only the `date` and `prcp` values.
 
-* Load the query results into a Pandas DataFrame and set the index to the date column.
+* Loaded the query results into a Pandas DataFrame and set the index to the date column.
 
-* Sort the DataFrame values by `date`.
+* Sorted the DataFrame values by `date`.
 
-* Plot the results using the DataFrame `plot` method.
+* Plotted the results using the DataFrame `plot` method.
 
-  ![precipitation](Images/precipitation.png)
-
-* Use Pandas to print the summary statistics for the precipitation data.
+* Used Pandas to print the summary statistics for the precipitation data.
 
 ### Station Analysis
 
-* Design a query to calculate the total number of stations in the dataset.
+* Designed a query to calculate the total number of stations in the dataset.
 
-* Design a query to find the most active stations (i.e. which stations have the most rows?).
+* Designed a query to find the most active stations 
 
-  * List the stations and observation counts in descending order.
+  * Listed the stations and observation counts in descending order.
 
-  * Which station id has the highest number of observations?
+  * Found which station id has the highest number of observations
 
-  * Using the most active station id, calculate the lowest, highest, and average temperature.
+  * Using the most active station id, calculated the lowest, highest, and average temperature.
 
-  * Hint: You will need to use a function such as `func.min`, `func.max`, `func.avg`, and `func.count` in your queries.
+* Designed a query to retrieve the last 12 months of temperature observation data (TOBS).
 
-* Design a query to retrieve the last 12 months of temperature observation data (TOBS).
+  * Filtered by the station with the highest number of observations.
 
-  * Filter by the station with the highest number of observations.
+  * Queried the last 12 months of temperature observation data for this station.
 
-  * Query the last 12 months of temperature observation data for this station.
+  * Plotted the results as a histogram with `bins=12`.
 
-  * Plot the results as a histogram with `bins=12`.
-
-    ![station-histogram](Images/station-histogram.png)
-
-* Close out your session.
+* Closed session.
 
 - - -
 
-## Step 2 - Climate App
+## Climate App
 
-Now that you have completed your initial analysis, design a Flask API based on the queries that you have just developed.
+After conducting an initial analysis, I designed a Flask API based on the developed queries.
 
-* Use Flask to create your routes.
+* To create my routes, I used Flask.
 
 ### Routes
 
@@ -85,37 +66,28 @@ Now that you have completed your initial analysis, design a Flask API based on t
 
   * Home page.
 
-  * List all routes that are available.
+  * Listed all available routes.
 
 * `/api/v1.0/precipitation`
 
-  * Convert the query results to a dictionary using `date` as the key and `prcp` as the value.
+  * Converted the query results to a dictionary using `date` as the key and `prcp` as the value.
 
-  * Return the JSON representation of your dictionary.
+  * Returned the JSON representation of my dictionary.
 
 * `/api/v1.0/stations`
 
-  * Return a JSON list of stations from the dataset.
+  * Returned a JSON list of stations from the dataset.
 
 * `/api/v1.0/tobs`
-  * Query the dates and temperature observations of the most active station for the last year of data.
+  * Queried the dates and temperature observations of the most active station for the last year of data.
 
-  * Return a JSON list of temperature observations (TOBS) for the previous year.
+  * Returned a JSON list of temperature observations (TOBS) for the previous year.
 
 * `/api/v1.0/<start>` and `/api/v1.0/<start>/<end>`
 
-  * Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
+  * Returned a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
 
-  * When given the start only, calculate `TMIN`, `TAVG`, and `TMAX` for all dates greater than and equal to the start date.
+  * With the start date only, I calculated `TMIN`, `TAVG`, and `TMAX` for all dates greater than and equal to the start date.
 
-  * When given the start and the end date, calculate the `TMIN`, `TAVG`, and `TMAX` for dates between the start and end date inclusive.
+  * With the start and the end date, I calculated the `TMIN`, `TAVG`, and `TMAX` for dates between the start and end date inclusive.
 
-## Hints
-
-* You will need to join the station and measurement tables for some of the queries.
-
-* Use Flask `jsonify` to convert your API data into a valid JSON response object.
-
-### Copyright
-
-Trilogy Education Services © 2020. All Rights Reserved.
